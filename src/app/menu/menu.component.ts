@@ -8,7 +8,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
-  uploadFormGroup = new FormGroup({file: new FormControl(null, Validators.required),
+  uploadFormGroup = new FormGroup({
+    file: new FormControl(null, [Validators.required, Validators.pattern("[^ ]+\.xls")]),
+
     semestr11 : new FormControl("", [Validators.pattern("^[1-9]*[.,]?[0-9]+$"), Validators.required]),
     semestr12 : new FormControl("", [Validators.pattern("^[1-9]*[.,]?[0-9]+$"), Validators.required]),
     semestr21 : new FormControl("", [Validators.pattern("^[1-9]*[.,]?[0-9]+$"), Validators.required]),
@@ -40,11 +42,17 @@ export class MenuComponent {
   }
 
   dis() {
-    let boolean = true
+    let boolean = false
     Object.keys(this.uploadFormGroup.controls).forEach(key => {
       // @ts-ignore
-      if (!this.uploadFormGroup.get(key)?.valid) boolean = false;
+      if (!this.uploadFormGroup.get(key)?.valid) boolean = true;
     });
     return boolean;
+  }
+
+  fileControl() {
+    let boolean = true
+    if (this.uploadFormGroup.controls["file"].valid) boolean = false
+    return boolean
   }
 }

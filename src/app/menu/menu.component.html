@@ -87,6 +87,9 @@
           <div class="mb-3">
             <label for="formFile" class="form-label">Оберіть файл</label>
             <input class="form-control" type="file" id="formFile" formControlName="file" required>
+            <div *ngIf="fileControl()">
+              Будь ласка оберіть файл формату .xls
+            </div>
           </div>
           <div class="mb-3">
             <label for="semestr11" class="col-form-label">Початок першого семестру:</label>
@@ -106,7 +109,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
-            <button type="submit" class="btn btn-outline-primary" *ngIf="dis()">Завантажити</button>
+            <button type="submit" class="btn btn-outline-primary" [disabled]="dis()">Завантажити</button>
           </div>
         </form>
       </div>
