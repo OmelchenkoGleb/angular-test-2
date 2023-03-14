@@ -8,7 +8,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" style="background-color: aliceblue;" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
+        <div class="offcanvas-header" style="background-color: white">
           <h5 class="offcanvas-title " id="offcanvasNavbarLabel">Меню</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -20,7 +20,7 @@
                 Переглянути дані
               </a>
               <ul class="dropdown-menu" style=" background-color: ghostwhite">
-                <li><a class="dropdown-item" href="#">Переглянути усі предмети</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#staticBack" aria-controls="staticBackdrop">Переглянути усі предмети</a></li>
                 <li><a class="dropdown-item" href="#">Переглянути предмети без викладачів</a></li>
                 <li>
                   <hr class="dropdown-divider">
@@ -88,24 +88,42 @@
             <label for="formFile" class="form-label">Оберіть файл</label>
             <input class="form-control" type="file" id="formFile" formControlName="file" required>
             <div *ngIf="fileControl()">
-              Будь ласка оберіть файл формату .xls
+              <h6>Оберіть файл формату .xls</h6>
             </div>
           </div>
           <div class="mb-3">
             <label for="semestr11" class="col-form-label">Початок першого семестру:</label>
             <input type="number" class="form-control" id="semestr11" formControlName="semestr11">
+            <div *ngIf="semestr11Control()">
+              <h6>Впишіть початок першого семестру</h6>
+            </div>
           </div>
           <div class="mb-3">
             <label for="semestr12" class="col-form-label">Кінець першого семестру:</label>
             <input type="number" class="form-control" id="semestr12" formControlName="semestr12" >
+            <div *ngIf="semestr12Control()">
+              <h6>Впишіть кінець першого семестру</h6>
+            </div>
           </div>
           <div class="mb-3">
             <label for="semestr21" class="col-form-label">Кінець першого семестру:</label>
             <input type="number" class="form-control" id="semestr21" formControlName="semestr21">
+            <div *ngIf="semestr21Control()">
+              <h6>Впишіть початок другого семестру</h6>
+            </div>
           </div>
           <div class="mb-3">
             <label for="semestr22" class="col-form-label">Кінець першого семестру:</label>
             <input type="number" class="form-control" id="semestr22" formControlName="semestr22">
+            <div *ngIf="semestr22Control()">
+              <h6>Впишіть кінець другого семестру</h6>
+            </div>
+          </div>
+          <div [hidden]="hid1" class="alert alert-success" role="alert">
+            Дані успішно додані !
+          </div>
+          <div [hidden]="hid2" class="alert alert-danger" role="alert">
+            Виникла помилка, перевірте введені дані !
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
@@ -125,14 +143,17 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="#" method="post" enctype="multipart/form-data">
+        <form enctype="multipart/form-data" [formGroup]="uploadFormGroup2" (ngSubmit)="uploadThing()">
           <div class="mb-3">
             <label for="formFile2" class="form-label">Оберіть файл</label>
-            <input class="form-control" type="file" id="formFile2" name="file">
+            <input class="form-control" type="file" id="formFile2" formControlName="file" name="file">
+            <div *ngIf="dis2()">
+              <h6>Оберіть файл формату .xls</h6>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
-            <button type="button" class="btn btn-outline-primary">Завантажити</button>
+            <button type="submit" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+            <button type="button" [disabled]="dis2()" class="btn btn-outline-primary">Завантажити</button>
           </div>
         </form>
       </div>
@@ -195,10 +216,10 @@
 <!--          </div>-->
           <input type="hidden" id="postId" name="download" value="1" />
           <div class="form-group mx-sm-3 mb-2">
-            <p>Оберіть потрібного вам викладача </p>
+            <p>Оберіть потрібного викладача </p>
             <select class="form-select" aria-label="Default select example" name="download">
-              <option selected value="1">Загрузити на ваш компьютер</option>
-              <option value="2">Вислати готовий файл на пошту</option>
+              <option selected value="1">Омельченко Гліб</option>
+              <option value="2">Факторович Олександр</option>
             </select>
           </div>
           <div class="modal-footer">
@@ -228,10 +249,10 @@
           <!--          </div>-->
           <input type="hidden" name="download" value="2" />
           <div class="form-group mx-sm-3 mb-2">
-            <p>Оберіть потрібного вам викладача </p>
+            <p>Оберіть потрібного викладача </p>
             <select class="form-select" aria-label="Default select example" name="download">
-              <option selected value="1">Загрузити на ваш компьютер</option>
-              <option value="2">Вислати готовий файл на пошту</option>
+              <option selected value="1">Омельченко Гліб</option>
+              <option value="2">Олександр Факторович</option>
             </select>
           </div>
           <div class="modal-footer">
@@ -241,6 +262,66 @@
         </form>
       </div>
     </div>
+  </div>
+</div>
+
+
+
+<div class="offcanvas offcanvas-start" style="width: max-content" data-bs-backdrop="static" tabindex="-1" id="staticBack" aria-labelledby="staticBackLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="staticBackLabel">Offcanvas</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" style="background-color: whitesmoke">
+    <div class="table-responsive-sm">
+      <table class="table table-bordered table-dark table-striped">
+        <thead class="thead-light">
+        <tr>
+          <th>Викладач</th>
+          <th>email</th>
+          <th>Посада</th>
+          <th>Ставка</th>
+          <th><a target="_blank">Додати</a></th>
+          <th></th>
+          <th>Викладач</th>
+          <th>email</th>
+          <th>Посада</th>
+          <th>Ставка</th>
+          <th><a target="_blank">Додати</a></th>
+          <th></th>
+          <th>Викладач</th>
+          <th>email</th>
+          <th>Посада</th>
+          <th>Ставка</th>
+          <th><a target="_blank">Додати</a></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody id="Table1">
+        <tr>
+          <th>Омельченко Гліб</th>
+          <th>glebomelchenko@gmail.com</th>
+          <th>Старший викладача</th>
+          <th>повна</th>
+          <th><a>Редагувати</a></th>
+          <th><a>Видалити</a></th>
+          <th>Омельченко Гліб</th>
+          <th>glebomelchenko@gmail.com</th>
+          <th>Старший викладача</th>
+          <th>повна</th>
+          <th><a>Редагувати</a></th>
+          <th><a>Видалити</a></th>
+          <th>Омельченко Гліб</th>
+          <th>glebomelchenko@gmail.com</th>
+          <th>Старший викладача</th>
+          <th>повна</th>
+          <th><a>Редагувати</a></th>
+          <th><a>Видалити</a></th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </div>
 
