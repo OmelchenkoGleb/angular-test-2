@@ -36,6 +36,20 @@ export class MenuComponent {
     this.renderer2.appendChild(this.document.body, srcScript);
     console.log(this);
   }
+
+  // $(document).ready(function(){
+  //   $("#Input1").on("keyup", function() {
+  //     var value = $(this).val().toLowerCase();
+  //     $("#Table1 tr").filter(function() {
+  //       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  //     });
+  //   });
+  // });
+
+
+
+
+
   uploadThing() {
     console.log(this.uploadFormGroup)
     console.log(this.uploadFormGroup.controls["semestr11"].value)
@@ -88,5 +102,9 @@ export class MenuComponent {
     let boolean = true
     if (this.uploadFormGroup2.controls["file"].valid) boolean = false
     return boolean
+  }
+
+  uploadTeachers() {
+    console.log(this.uploadFormGroup2)
   }
 }

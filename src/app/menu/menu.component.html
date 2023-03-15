@@ -1,6 +1,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-
+<!--Меню-->
 <nav class="navbar p-3 mb-2  bg-gradient fixed-top" >
     <div class="container-fluid " >
       <a class="navbar-brand" href="#"></a>
@@ -21,11 +21,16 @@
               </a>
               <ul class="dropdown-menu" style=" background-color: ghostwhite">
                 <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#staticBack" aria-controls="staticBackdrop">Переглянути усі предмети</a></li>
-                <li><a class="dropdown-item" href="#">Переглянути предмети без викладачів</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#staticBack3" aria-controls="staticBackdrop">Переглянути предмети без викладачів</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Переглянути дані про викладачів</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#staticBack4" aria-controls="staticBackdrop">Переглянути дані про викладачів</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#staticBack5" aria-controls="staticBackdrop">Сформувати звіт</a></li>
+
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -73,6 +78,8 @@
       </div>
     </div>
   </nav>
+
+
 
 <!--Завантажити дані про предмет-->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -143,7 +150,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form enctype="multipart/form-data" [formGroup]="uploadFormGroup2" (ngSubmit)="uploadThing()">
+        <form enctype="multipart/form-data" [formGroup]="uploadFormGroup2" (ngSubmit)="uploadTeachers()">
           <div class="mb-3">
             <label for="formFile2" class="form-label">Оберіть файл</label>
             <input class="form-control" type="file" id="formFile2" formControlName="file" name="file">
@@ -152,8 +159,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
-            <button type="button" [disabled]="dis2()" class="btn btn-outline-primary">Завантажити</button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+            <button type="submit" [disabled]="dis2()" class="btn btn-outline-primary">Завантажити</button>
           </div>
         </form>
       </div>
@@ -267,61 +274,376 @@
 
 
 
-<div class="offcanvas offcanvas-start" style="width: max-content" data-bs-backdrop="static" tabindex="-1" id="staticBack" aria-labelledby="staticBackLabel">
+
+
+<!--Перегляд усіх даних по предметам-->
+<div class="offcanvas offcanvas-start" style="width: -webkit-fill-available" data-bs-backdrop="static" tabindex="-1" id="staticBack" aria-labelledby="staticBackLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="staticBackLabel">Offcanvas</h5>
+    <button class="btn btn-outline-success" type="submit">Другий семестр</button>
+    <h5 class="offcanvas-title" id="staticBackLabel">Перегляд усіх даних по предметам</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body" style="background-color: whitesmoke">
-    <div class="table-responsive-sm">
-      <table class="table table-bordered table-dark table-striped">
+  <div class="offcanvas-body" style="background-color: honeydew">
+    <input class="form-control" id="Input1" type="text" placeholder="Ведіть інформацію по якій шукати для першого семестра..">
+    <div class="table-responsive">
+      <br>
+      <table class="table table-bordered table-hover table-light align-middle">
         <thead class="thead-light">
-        <tr>
-          <th>Викладач</th>
-          <th>email</th>
-          <th>Посада</th>
-          <th>Ставка</th>
-          <th><a target="_blank">Додати</a></th>
-          <th></th>
-          <th>Викладач</th>
-          <th>email</th>
-          <th>Посада</th>
-          <th>Ставка</th>
-          <th><a target="_blank">Додати</a></th>
-          <th></th>
-          <th>Викладач</th>
-          <th>email</th>
-          <th>Посада</th>
-          <th>Ставка</th>
-          <th><a target="_blank">Додати</a></th>
+        <tr class="align-middle">
+          <th>Факультет. Назва  дис., обсяг в год.. Курс, шифр, к-сть студент.</th>
+          <th>Викл.</th>
+          <th>Лек.</th>
+          <th>Лек.К</th>
+          <th>Практ.</th>
+          <th>Практ.К</th>
+          <th>Лаб.</th>
+          <th>Лаб.К</th>
+          <th>Інд.зан.1</th>
+          <th>Інд.зан.2</th>
+          <th>Екз.</th>
+          <th>Екз.К</th>
+          <th>Зал. 1</th>
+          <th>Зал. 2Z</th>
+          <th>Кр.роб.1</th>
+          <th>Кр.роб.2</th>
+          <th>Кур.пркт.1</th>
+          <th>Кур.пркт.2</th>
+          <th>Кур.роб.1</th>
+          <th>Кур.роб.2</th>
+          <th>РГР</th>
+          <th>РГР.К</th>
+          <th>ДКР</th>
+          <th>ДКР.К</th>
+          <th>Реф.)</th>
+          <th>Реф.К</th>
+          <th>Конс.1</th>
+          <th>Конс.2</th>
+          <th>Всго.год.1</th>
+          <th>Всго.год.2</th>
+          <th>Обс.год.</th>
+          <th><a href="#">Додати</a></th>
           <th></th>
         </tr>
         </thead>
         <tbody id="Table1">
-        <tr>
-          <th>Омельченко Гліб</th>
-          <th>glebomelchenko@gmail.com</th>
-          <th>Старший викладача</th>
-          <th>повна</th>
-          <th><a>Редагувати</a></th>
-          <th><a>Видалити</a></th>
-          <th>Омельченко Гліб</th>
-          <th>glebomelchenko@gmail.com</th>
-          <th>Старший викладача</th>
-          <th>повна</th>
-          <th><a>Редагувати</a></th>
-          <th><a>Видалити</a></th>
-          <th>Омельченко Гліб</th>
-          <th>glebomelchenko@gmail.com</th>
-          <th>Старший викладача</th>
-          <th>повна</th>
-          <th><a>Редагувати</a></th>
-          <th><a>Видалити</a></th>
+        <tr class="align-middle">
+          <th>Методології розробки ПО в сучасному програмуванні. Групи ТВ-91, ТІ-91, ТІ-92.</th>
+
+<!--          тут треба перевірка на наявність викладача-->
+          <th><a href="#">Обрати викладача</a></th>
+
+
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th><a href="#">Ред.</a></th>
+          <th><a href="#">Вид.</a></th>
         </tr>
         </tbody>
       </table>
     </div>
-
+    <br>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </div>
 
+
+
+<!--Перегляд без викладачів даних по предметам-->
+<div class="offcanvas offcanvas-start" style="width: -webkit-fill-available" data-bs-backdrop="static" tabindex="-1" id="staticBack3" aria-labelledby="staticBackLabel3">
+  <div class="offcanvas-header">
+    <button class="btn btn-outline-success" type="submit">Другий семестр</button>
+    <h5 class="offcanvas-title" id="staticBackLabel3">Перегляд без викладачів даних по предметам</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" style="background-color: honeydew">
+    <input class="form-control" id="Input2" type="text" placeholder="Ведіть інформацію по якій шукати для першого семестра..">
+    <div class="table-responsive">
+      <br>
+      <table class="table table-bordered table-hover table-light align-middle">
+        <thead class="thead-light">
+        <tr class="align-middle">
+          <th>Факультет. Назва  дис., обсяг в год.. Курс, шифр, к-сть студент.</th>
+          <th>Викл.</th>
+          <th>Лек.</th>
+          <th>Лек.К</th>
+          <th>Практ.</th>
+          <th>Практ.К</th>
+          <th>Лаб.</th>
+          <th>Лаб.К</th>
+          <th>Інд.зан.1</th>
+          <th>Інд.зан.2</th>
+          <th>Екз.</th>
+          <th>Екз.К</th>
+          <th>Зал. 1</th>
+          <th>Зал. 2Z</th>
+          <th>Кр.роб.1</th>
+          <th>Кр.роб.2</th>
+          <th>Кур.пркт.1</th>
+          <th>Кур.пркт.2</th>
+          <th>Кур.роб.1</th>
+          <th>Кур.роб.2</th>
+          <th>РГР</th>
+          <th>РГР.К</th>
+          <th>ДКР</th>
+          <th>ДКР.К</th>
+          <th>Реф.)</th>
+          <th>Реф.К</th>
+          <th>Конс.1</th>
+          <th>Конс.2</th>
+          <th>Всго.год.1</th>
+          <th>Всго.год.2</th>
+          <th>Обс.год.</th>
+          <th><a href="#">Додати</a></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody id="Table2">
+        <tr class="align-middle">
+          <th>Методології розробки ПО в сучасному програмуванні. Групи ТВ-91, ТІ-91, ТІ-92.</th>
+          <th><a href="#">Обрати викладача</a></th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th><a href="#">Ред.</a></th>
+          <th><a href="#">Вид.</a></th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+
+
+<!--Перегляд даних про викладачів-->
+<div class="offcanvas offcanvas-start" style="width: -webkit-fill-available" data-bs-backdrop="static" tabindex="-1" id="staticBack4" aria-labelledby="staticBackLabel4">
+  <div class="offcanvas-header">
+
+    <h5 class="offcanvas-title" id="staticBackLabel4">Перегляд даних про викладачів</h5>
+
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" style="background-color: honeydew">
+    <input class="form-control" id="Input4" type="text" placeholder="Ведіть імя та прізвище викладача..">
+    <div class="table-responsive">
+      <br>
+      <table class="table table-bordered table-hover table-light align-middle">
+        <thead class="thead-light">
+        <tr class="align-middle">
+          <th>Викладач</th>
+          <th>email</th>
+          <th>Посада</th>
+          <th>Ставка</th>
+          <th><a href="#">Додати</a></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody id="Table4">
+        <tr class="align-middle">
+          <th>Омельченко Гліб</th>
+          <th>glebomelchenko@gmail.com</th>
+          <th>Старший викладача</th>
+          <th>1</th>
+          <th><a href="#">Редагувати</a></th>
+          <th><a href="#">Видалити</a></th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+
+
+<!--Звіт викладачів по предметам за два семестра-->
+<div class="offcanvas offcanvas-start" style="width: -webkit-fill-available" data-bs-backdrop="static" tabindex="-1" id="staticBack5" aria-labelledby="staticBackLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="staticBackLabel5">Звіт викладачів по предметам за два семестра</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" style="background-color: honeydew">
+    <input class="form-control" id="Input5" type="text" placeholder="Ведіть імя та прізвище викладача...">
+    <div class="table-responsive">
+      <br>
+      <table class="table table-bordered table-hover table-light align-middle">
+        <thead class="thead-light">
+        <tr class="align-middle">
+          <th>Факультет. Назва  дис., обсяг в год.. Курс, шифр, к-сть студент.</th>
+          <th>Викл.</th>
+          <th>Лек.</th>
+          <th>Лек.К</th>
+          <th>Практ.</th>
+          <th>Практ.К</th>
+          <th>Лаб.</th>
+          <th>Лаб.К</th>
+          <th>Інд.зан.1</th>
+          <th>Інд.зан.2</th>
+          <th>Екз.</th>
+          <th>Екз.К</th>
+          <th>Зал. 1</th>
+          <th>Зал. 2Z</th>
+          <th>Кр.роб.1</th>
+          <th>Кр.роб.2</th>
+          <th>Кур.пркт.1</th>
+          <th>Кур.пркт.2</th>
+          <th>Кур.роб.1</th>
+          <th>Кур.роб.2</th>
+          <th>РГР</th>
+          <th>РГР.К</th>
+          <th>ДКР</th>
+          <th>ДКР.К</th>
+          <th>Реф.)</th>
+          <th>Реф.К</th>
+          <th>Конс.1</th>
+          <th>Конс.2</th>
+          <th>Всго.год.1</th>
+          <th>Всго.год.2</th>
+          <th>Обс.год.</th>
+        </tr>
+        </thead>
+        <tbody id="Table5">
+        <tr class="align-middle">
+          <th>Методології розробки ПО в сучасному програмуванні. Групи ТВ-91, ТІ-91, ТІ-92.</th>
+          <th>Омельченко Гліб</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+          <th>1</th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
