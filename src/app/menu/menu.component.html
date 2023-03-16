@@ -81,7 +81,7 @@
 
 
 
-<!--Завантажити дані про предмет-->
+<!--Завантажити дані про предмети-->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
@@ -326,8 +326,8 @@
         </tr>
         </thead>
         <tbody id="Table1">
-        <tr class="align-middle">
-          <th>Методології розробки ПО в сучасному програмуванні. Групи ТВ-91, ТІ-91, ТІ-92.</th>
+        <tr class="align-middle" *ngFor="let arg of data2">
+          <th>{{arg.name}}</th>
 
 <!--          тут треба перевірка на наявність викладача-->
           <th><a href="#">Обрати викладача</a></th>
@@ -362,8 +362,8 @@
           <th>1</th>
           <th>1</th>
           <th>1</th>
-          <th><a href="#">Ред.</a></th>
-          <th><a href="#">Вид.</a></th>
+          <th><a href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#uploadThing'"  (click)="uploadThingg(arg.name)">Ред.</a></th>
+          <th><a href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#dropThing'"  (click)="dropThing(arg.name)">Вид.</a></th>
         </tr>
         </tbody>
       </table>
@@ -384,9 +384,6 @@
     </nav>
   </div>
 </div>
-
-
-
 <!--Перегляд без викладачів даних по предметам-->
 <div class="offcanvas offcanvas-start" style="width: -webkit-fill-available" data-bs-backdrop="static" tabindex="-1" id="staticBack3" aria-labelledby="staticBackLabel3">
   <div class="offcanvas-header">
@@ -491,6 +488,255 @@
     </nav>
   </div>
 </div>
+<!--Видалення предмета-->
+<div class="modal fade" id="dropThing" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dropThingLabel">Видалити дані про предмет</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Ви впевнені, що бажаєте видалити дані про цей предмет "{{name}}" ?!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+        <button type="button" class="btn btn-outline-primary">Видалити</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Редагування\Додавання предмета-->
+<div class="modal fade" id="uploadThing" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadThingLabel">Редагування\Додавання даних про предмет</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!--        <form class="needs-validation" enctype="multipart/form-data" [formGroup]="uploadFormGroup" (ngSubmit)="uploadThing()">-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Факультет(ін-т). Назва  дис.,обсяг в годинах. Курс, шифр,студентів в групі (Б+К)</label>-->
+<!--            <input type="text" class="form-control" formControlName="name">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть назву факультету та інше ...</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Семестр</label>-->
+<!--            <input type="number" class="form-control" formControlName="semestr">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть семестр</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Лекції</label>-->
+<!--            <input type="number" class="form-control" formControlName="LL" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість лекцій</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Практики</label>-->
+<!--            <input type="number" class="form-control" formControlName="PP" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість практик</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Лабораторні</label>-->
+<!--            <input type="number" class="form-control" formControlName="L" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість лабораторних</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Індивідуальні заняття</label>-->
+<!--            <input type="number" class="form-control" formControlName="I" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість індивідувальних занять</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Екзамени</label>-->
+<!--            <input type="number" class="form-control" formControlName="E" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість екзаменів</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Заліки</label>-->
+<!--            <input type="number" class="form-control" formControlName="Z" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість заліків</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Контрольні роботи</label>-->
+<!--            <input type="number" class="form-control" formControlName="M" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість контрольних робіт</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Курсові проекти</label>-->
+<!--            <input type="number" class="form-control" formControlName="Q" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість курсових проектів</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Курсові роботи</label>-->
+<!--            <input type="number" class="form-control" formControlName="G" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість курсових робіт</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">РГР, РР, ГР</label>-->
+<!--            <input type="number" class="form-control" formControlName="R" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість РГР, РР, ГР</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">ДКР</label>-->
+<!--            <input type="number" class="form-control" formControlName="D" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість ДКР</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Реферати</label>-->
+<!--            <input type="number" class="form-control" formControlName="F" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість рефератів</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Академічні бюджетники</label>-->
+<!--            <input type="number" class="form-control" formControlName="GG" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість академічних бюджетників</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Підгрупи для ПЗ</label>-->
+<!--            <input type="number" class="form-control" formControlName="GGPP" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість підгруп для ПЗ</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Підгрупи для ПЗ</label>-->
+<!--            <input type="number" class="form-control" formControlName="GGPP" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість підгруп для ПЗ</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Підгрупи для лабораторних робіт</label>-->
+<!--            <input type="number" class="form-control" formControlName="GGL" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість підгруп для лабораторних робіт</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Академ. контрактні</label>-->
+<!--            <input type="number" class="form-control" formControlName="GGk" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість підгруп академ. контрактників</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Підгрупи для ПЗ</label>-->
+<!--            <input type="number" class="form-control" formControlName="GGKPP" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість підгрупи для ПЗ</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Підгрупи для лабораторних робіт</label>-->
+<!--            <input type="number" class="form-control" formControlName="GGKL" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість підгрупи для лабораторних робіт</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Б</label>-->
+<!--            <input type="number" class="form-control" formControlName="BB" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть Б</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">К</label>-->
+<!--            <input type="number" class="form-control" formControlName="K" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть К</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">БК</label>-->
+<!--            <input type="number" class="form-control" formControlName="BBk" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть БК</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">КК</label>-->
+<!--            <input type="number" class="form-control" formControlName="KK" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть КК</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Кількість бюджетних потоків</label>-->
+<!--            <input type="number" class="form-control" formControlName="P" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість бюджетних потоків</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Кількість контрактних потоків</label>-->
+<!--            <input type="number" class="form-control" formControlName="PK" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть кількість бюджетних потоків</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="col-form-label">Обсяг дисциплін за семестр</label>-->
+<!--            <input type="number" class="form-control" formControlName="obsyag" step="0.01">-->
+<!--            <div *ngIf="semestr11Control()">-->
+<!--              <h6>Впишіть обсяг дисциплін за семестр</h6>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <br>-->
+<!--          <div class="form-group mx-sm-3 mb-2">-->
+<!--            <label for="select" class="sr-only container mt-2 mb-2 d-flex justify-content-center">Тип навчання</label>-->
+<!--            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="type">-->
+<!--              <option selected value="1">Очник</option>-->
+<!--              <option value="2">Заочник</option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--          <div class="form-group mx-sm-3 mb-2 ">-->
+<!--            <label for="select" class="sr-only container mt-2 mb-2 d-flex justify-content-center">Викладач</label>-->
+<!--            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select" name="choose">-->
+<!--              <option selected value="1">Омельченко Гліб</option>-->
+<!--              <option value="2">Факторович Олександр</option>            </select>-->
+<!--          </div>-->
+<!--          <br>-->
+<!--          <div class="modal-footer">-->
+<!--            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>-->
+<!--            <button type="submit" class="btn btn-outline-primary" [disabled]="dis()">Завантажити</button>-->
+<!--          </div>-->
+<!--        </form>-->
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

@@ -1,6 +1,7 @@
 import {Component, Inject, Renderer2} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {test} from "../Model/test";
 
 @Component({
   selector: 'app-menu',
@@ -103,8 +104,26 @@ export class MenuComponent {
     if (this.uploadFormGroup2.controls["file"].valid) boolean = false
     return boolean
   }
-
   uploadTeachers() {
     console.log(this.uploadFormGroup2)
+  }
+
+
+
+
+
+  // ети методи нужно перенести в другой компонент !!!
+  data2: test[] = [
+    {name: "name1"},
+    {name: "name2"},
+    {name: "name3"}
+  ];
+  name = "";
+  dropThing(name: string) {
+      this.name = name
+  }
+
+  uploadThingg(name: string) {
+    
   }
 }
