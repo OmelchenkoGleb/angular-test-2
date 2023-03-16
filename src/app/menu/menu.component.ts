@@ -119,11 +119,41 @@ export class MenuComponent {
     {name: "name3"}
   ];
   name = "";
+  uploadThingFormGroup = new FormGroup({
+    name: new FormControl("", [Validators.required]),
+    semestr : new FormControl("", [Validators.required]),
+    LL : new FormControl("", [Validators.required]),
+    PP : new FormControl("", [Validators.required]),
+    L : new FormControl("", [Validators.required]),
+    I: new FormControl("", [Validators.required]),
+    E : new FormControl("", [Validators.required]),
+    Z : new FormControl("", [Validators.required]),
+    M : new FormControl("", [Validators.required]),
+    Q : new FormControl("", [Validators.required]),
+    G : new FormControl("", [Validators.required]),
+    R : new FormControl("", [Validators.required]),
+    F : new FormControl("", [Validators.required]),
+    GG: new FormControl("", [Validators.required]),
+    GGPP : new FormControl("", [Validators.required]),
+    GGL : new FormControl("", [Validators.required]),
+    GGk : new FormControl("", [Validators.required]),
+    GGKPP : new FormControl("", [Validators.required]),
+    GGKL : new FormControl("", [Validators.required]),
+    BB : new FormControl("", [Validators.required]),
+    K : new FormControl("", [Validators.required]),
+    BBk : new FormControl("", [Validators.required]),
+    KK : new FormControl("", [Validators.required]),
+    P : new FormControl("", [Validators.required]),
+    PK : new FormControl("", [Validators.required]),
+    obsyag: new FormControl("", [Validators.required]),
+    type : new FormControl("", [Validators.required]),
+    choose : new FormControl("", [Validators.required])
+  });
   dropThing(name: string) {
       this.name = name
   }
 
   uploadThingg(name: string) {
-    
+
   }
 }
