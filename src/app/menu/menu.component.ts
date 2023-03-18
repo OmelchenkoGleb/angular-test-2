@@ -35,7 +35,22 @@ export class MenuComponent {
     }());
   `;
     this.renderer2.appendChild(this.document.body, srcScript);
-    console.log(this);
+
+
+
+
+    // const textScript2 = this.renderer2.createElement('script');
+    // textScript2.src = './script/jas.js';
+    // this.renderer2.appendChild(this.document.body, textScript2);
+    //
+    // const srcScript2 = this.renderer2.createElement('script');
+    // srcScript2.type = 'text/javascript';
+    // srcScript2.text = `
+    //   (function() {
+    //     console.log('Hello from Siberia!')
+    //   }());
+    // `;
+    // this.renderer2.appendChild(this.document.body, srcScript2);
   }
 
   // $(document).ready(function(){
@@ -113,11 +128,7 @@ export class MenuComponent {
 
 
   // ети методи нужно перенести в другой компонент !!!
-  data2: test[] = [
-    {name: "name1"},
-    {name: "name2"},
-    {name: "name3"}
-  ];
+
   name = "";
   dropThing(name: string) {
       this.name = name
@@ -153,11 +164,11 @@ export class MenuComponent {
     type : new FormControl("", [Validators.required]),
     choose : new FormControl("", [Validators.required])
   });
-  uploadThingg(arg: test) {
-    if (arg == null){
+  uploadThingg(arg?: test) {
+    if (arg != null){
       // @ts-ignore
       this.uploadThingFormGroup = new FormGroup({
-        name: new FormControl("", [Validators.required]),
+        name: new FormControl(arg.name, [Validators.required]),
         semestr : new FormControl("", [Validators.required]),
         LL : new FormControl("", [Validators.required]),
         PP : new FormControl("", [Validators.required]),
@@ -191,7 +202,7 @@ export class MenuComponent {
     } else {
       // @ts-ignore
       this.uploadThingFormGroup = new FormGroup({
-        name: new FormControl(arg.name, [Validators.required]),
+        name: new FormControl("", [Validators.required]),
         semestr : new FormControl("", [Validators.required]),
         LL : new FormControl("", [Validators.required]),
         PP : new FormControl("", [Validators.required]),
@@ -223,38 +234,6 @@ export class MenuComponent {
       });
     }
   }
-  // uploadThingFormGroup = new FormGroup({
-  //   name: new FormControl("", [Validators.required]),
-  //   semestr : new FormControl("", [Validators.required]),
-  //   LL : new FormControl("", [Validators.required]),
-  //   PP : new FormControl("", [Validators.required]),
-  //   L : new FormControl("", [Validators.required]),
-  //   I: new FormControl("", [Validators.required]),
-  //   E : new FormControl("", [Validators.required]),
-  //   Z : new FormControl("", [Validators.required]),
-  //   M : new FormControl("", [Validators.required]),
-  //   Q : new FormControl("", [Validators.required]),
-  //   G : new FormControl("", [Validators.required]),
-  //   R : new FormControl("", [Validators.required]),
-  //   D : new FormControl("", [Validators.required]),
-  //   F : new FormControl("", [Validators.required]),
-  //   GG: new FormControl("", [Validators.required]),
-  //   GGPP : new FormControl("", [Validators.required]),
-  //   GGL : new FormControl("", [Validators.required]),
-  //   GGk : new FormControl("", [Validators.required]),
-  //   GGKPP : new FormControl("", [Validators.required]),
-  //   GGKL : new FormControl("", [Validators.required]),
-  //   BB : new FormControl("", [Validators.required]),
-  //   K : new FormControl("", [Validators.required]),
-  //   BBk : new FormControl("", [Validators.required]),
-  //   KK : new FormControl("", [Validators.required]),
-  //   P : new FormControl("", [Validators.required]),
-  //   PK : new FormControl("", [Validators.required]),
-  //   obsyag: new FormControl("", [Validators.required]),
-  //   type : new FormControl("", [Validators.required]),
-  //   choose : new FormControl("", [Validators.required])
-  // });
-
   nameControl() {
     let boolean = true
     if (this.uploadThingFormGroup.controls["name"].valid) boolean = false
@@ -414,4 +393,49 @@ export class MenuComponent {
       }, 9000);
     }
   }
+  data2: test[] = [
+    {name: "name1"},
+    {name: "name2"},
+    {name: "name3"}
+  ];
+  textSumbitSwapSemestr = "Другий семестр"
+  swapSemestr() {
+    if (this.textSumbitSwapSemestr == "Другий семестр"){
+       this.data2 = [
+          {name: "name1"},
+          {name: "name2"},
+          {name: "name3"}
+        ];
+      this.textSumbitSwapSemestr = "Перший семестр"
+    } else {
+      this.data2 = [
+        {name: "name4"},
+        {name: "name5"},
+        {name: "name6"}
+      ];
+      this.textSumbitSwapSemestr = "Другий семестр"
+    }
+  }
+
+  chooseTeacherFormGroup = new FormGroup({
+    choose: new FormControl("", [Validators.required])
+  })
+
+  chooseTeacher() {
+    console.log(this.choose)
+    console.log(this.chooseTeacherFormGroup)
+  }
+
+  choose = ""
+  chooseTeacherr(arg: test) {
+    this.choose = arg.name
+  }
+
+  checkChoose() {
+    let boolean = true
+    if (this.chooseTeacherFormGroup.controls["choose"].valid) boolean = false
+    return boolean
+  }
+
+
 }
