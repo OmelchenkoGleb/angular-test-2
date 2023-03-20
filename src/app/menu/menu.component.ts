@@ -35,34 +35,7 @@ export class MenuComponent {
     }());
   `;
     this.renderer2.appendChild(this.document.body, srcScript);
-
-
-
-
-    // const textScript2 = this.renderer2.createElement('script');
-    // textScript2.src = './script/jas.js';
-    // this.renderer2.appendChild(this.document.body, textScript2);
-    //
-    // const srcScript2 = this.renderer2.createElement('script');
-    // srcScript2.type = 'text/javascript';
-    // srcScript2.text = `
-    //   (function() {
-    //     console.log('Hello from Siberia!')
-    //   }());
-    // `;
-    // this.renderer2.appendChild(this.document.body, srcScript2);
   }
-
-  // $(document).ready(function(){
-  //   $("#Input1").on("keyup", function() {
-  //     var value = $(this).val().toLowerCase();
-  //     $("#Table1 tr").filter(function() {
-  //       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-  //     });
-  //   });
-  // });
-
-
 
 
 
@@ -127,7 +100,6 @@ export class MenuComponent {
 
 
 
-  // ети методи нужно перенести в другой компонент !!!
 
   name = "";
   dropThing(name: string) {
@@ -393,6 +365,8 @@ export class MenuComponent {
       }, 9000);
     }
   }
+
+  // используется два раза так что будут разные данные и разные для них свапы . Не забыть !
   data2: test[] = [
     {name: "name1"},
     {name: "name2"},
@@ -401,17 +375,17 @@ export class MenuComponent {
   textSumbitSwapSemestr = "Другий семестр"
   swapSemestr() {
     if (this.textSumbitSwapSemestr == "Другий семестр"){
-       this.data2 = [
-          {name: "name1"},
-          {name: "name2"},
-          {name: "name3"}
-        ];
-      this.textSumbitSwapSemestr = "Перший семестр"
-    } else {
       this.data2 = [
         {name: "name4"},
         {name: "name5"},
         {name: "name6"}
+      ];
+      this.textSumbitSwapSemestr = "Перший семестр"
+    } else {
+      this.data2 = [
+        {name: "name1"},
+        {name: "name2"},
+        {name: "name3"}
       ];
       this.textSumbitSwapSemestr = "Другий семестр"
     }

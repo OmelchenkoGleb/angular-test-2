@@ -387,15 +387,15 @@
 <!--Перегляд без викладачів даних по предметам-->
 <div class="offcanvas offcanvas-start" style="width: -webkit-fill-available" data-bs-backdrop="static" tabindex="-1" id="staticBack3" aria-labelledby="staticBackLabel3">
   <div class="offcanvas-header">
-    <button class="btn btn-outline-success" type="submit">Другий семестр</button>
+    <button class="btn btn-outline-success" type="submit" (click)="swapSemestr()">Другий семестр</button>
     <h5 class="offcanvas-title" id="staticBackLabel3">Перегляд без викладачів даних по предметам</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body" style="background-color: honeydew">
-    <input class="form-control" id="Input2" type="text" placeholder="Ведіть інформацію по якій шукати для першого семестра..">
+    <input class="form-control" id="search" onkeyup = "tableSearch1()" type="text" placeholder="Ведіть інформацію по якій шукати...">
     <div class="table-responsive">
       <br>
-      <table class="table table-bordered table-hover table-light align-middle">
+      <table class="table table-bordered table-hover table-light align-middle" id="table">
         <thead class="thead-light">
         <tr class="align-middle">
           <th>Факультет. Назва  дис., обсяг в год.. Курс, шифр, к-сть студент.</th>
@@ -429,14 +429,18 @@
           <th>Всго.год.1</th>
           <th>Всго.год.2</th>
           <th>Обс.год.</th>
-          <th><a href="#">Додати</a></th>
+          <th><a href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#uploadThing'"  (click)="uploadThingg()">Додати</a></th>
           <th></th>
         </tr>
         </thead>
-        <tbody id="Table2">
-        <tr class="align-middle">
-          <th>Методології розробки ПО в сучасному програмуванні. Групи ТВ-91, ТІ-91, ТІ-92.</th>
-          <th><a href="#">Обрати викладача</a></th>
+        <tbody>
+        <tr class="align-middle" *ngFor="let arg of data2">
+          <th>{{arg.name}}</th>
+
+          <!--          тут треба перевірка на наявність викладача-->
+          <th><a href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#chooseTeacher'"  (click)="chooseTeacherr(arg)">Обрати викладача</a></th>
+
+
           <th>1</th>
           <th>1</th>
           <th>1</th>
@@ -466,8 +470,8 @@
           <th>1</th>
           <th>1</th>
           <th>1</th>
-          <th><a href="#">Ред.</a></th>
-          <th><a href="#">Вид.</a></th>
+          <th><a href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#uploadThing'"  (click)="uploadThingg(arg)">Ред.</a></th>
+          <th><a href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#dropThing'"  (click)="dropThing(arg.name)">Вид.</a></th>
         </tr>
         </tbody>
       </table>
@@ -741,12 +745,14 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="chooseTeacherLabel">Видалити дані про предмет</h5>
+        <h5 class="modal-title" id="chooseTeacherLabel">Обрати викладача</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form class="needs-validation" enctype="multipart/form-data" [formGroup]="chooseTeacherFormGroup" (ngSubmit)="chooseTeacher()">
           <div class="form-group mx-sm-3 mb-2 ">
+            <label for="select" class="sr-only container mt-2 mb-2 d-flex justify-content-center">Предмет: {{choose}}</label>
+            <br>
             <label for="select" class="sr-only container mt-2 mb-2 d-flex justify-content-center">Викладач</label>
             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" formControlName="choose">
               <option selected value="1">Омельченко Гліб</option>
