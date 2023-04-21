@@ -81,196 +81,7 @@
 
 
 
-<!--Завантажити дані про предмети-->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Завантажити дані про предмети</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form class="needs-validation" enctype="multipart/form-data" [formGroup]="uploadFormGroup" (ngSubmit)="uploadThing()">
-          <div class="mb-3">
-            <label for="formFile" class="form-label">Оберіть файл</label>
-            <input class="form-control" type="file" id="formFile" formControlName="file" required>
-            <div *ngIf="fileControl()">
-              <h6>Оберіть файл формату .xls</h6>
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="semestr11" class="col-form-label">Початок першого семестру:</label>
-            <input type="number" class="form-control" id="semestr11" formControlName="semestr11">
-            <div *ngIf="semestr11Control()">
-              <h6>Впишіть початок першого семестру</h6>
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="semestr12" class="col-form-label">Кінець першого семестру:</label>
-            <input type="number" class="form-control" id="semestr12" formControlName="semestr12" >
-            <div *ngIf="semestr12Control()">
-              <h6>Впишіть кінець першого семестру</h6>
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="semestr21" class="col-form-label">Кінець першого семестру:</label>
-            <input type="number" class="form-control" id="semestr21" formControlName="semestr21">
-            <div *ngIf="semestr21Control()">
-              <h6>Впишіть початок другого семестру</h6>
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="semestr22" class="col-form-label">Кінець першого семестру:</label>
-            <input type="number" class="form-control" id="semestr22" formControlName="semestr22">
-            <div *ngIf="semestr22Control()">
-              <h6>Впишіть кінець другого семестру</h6>
-            </div>
-          </div>
-          <div [hidden]="hid1" class="alert alert-success" role="alert">
-            Дані успішно додані !
-          </div>
-          <div [hidden]="hid2" class="alert alert-danger" role="alert">
-            Виникла помилка, перевірте введені дані !
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
-            <button type="submit" class="btn btn-outline-primary" [disabled]="dis()">Завантажити</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!--Завантажити дані про викладачів-->
-<div class="modal fade" id="staticBackdropTeacher" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel1">Завантажити дані про викладачів</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form enctype="multipart/form-data" [formGroup]="uploadFormGroup2" (ngSubmit)="uploadTeachers()">
-          <div class="mb-3">
-            <label for="formFile2" class="form-label">Оберіть файл</label>
-            <input class="form-control" type="file" id="formFile2" formControlName="file" name="file">
-            <div *ngIf="dis2()">
-              <h6>Оберіть файл формату .xls</h6>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
-            <button type="submit" [disabled]="dis2()" class="btn btn-outline-primary">Завантажити</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!--Видалити дані про предмет-->
-<div class="modal fade" id="dropThings" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="dropThingsLabel">Видалити дані про предмети</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Ви впевнені, що бажаєте видалити усі дані про предмети ?!</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
-        <button type="button" class="btn btn-outline-primary">Видалити</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--Видалити дані про викладачів-->
-<div class="modal fade" id="dropTeacher" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="dropTeachersLabel">Видалити дані про викладачів</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Ви впевнені, що бажаєте видалити усі дані про викладачів ?!</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
-        <button type="button" class="btn btn-outline-primary">Видалити</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--Вивантажити дані про предмет на комп-->
-<div class="modal fade" id="downloadThingsOnComputer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="downloadThingsOnComputerLabel">Вивантажити дані на ваш комп'ютер</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="#" method="post" enctype="multipart/form-data">
-<!--          <div class="form-group mx-sm-3 mb-2">-->
-<!--            <label for="select" class="sr-only">Викладач</label>-->
-<!--            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select" name="choose">-->
-<!--              <option th:each="el : ${data}" th:text="${el.name}" th:value="${el.id}" name="choose"></option>-->
-<!--            </select>-->
-<!--          </div>-->
-          <input type="hidden" id="postId" name="download" value="1" />
-          <div class="form-group mx-sm-3 mb-2">
-            <p>Оберіть потрібного викладача </p>
-            <select class="form-select" aria-label="Default select example" name="download">
-              <option selected value="1">Омельченко Гліб</option>
-              <option value="2">Факторович Олександр</option>
-            </select>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
-            <button type="button" class="btn btn-outline-primary">Вивантажити</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!--Вивантажити дані про викладачів-->
-<div class="modal fade" id="downloadThingsOnMail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="downloadThingsOnMailLabel">Вивантажити дані на пошту викладача</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="#" method="post" enctype="multipart/form-data">
-          <!--          <div class="form-group mx-sm-3 mb-2">-->
-          <!--            <label for="select" class="sr-only">Викладач</label>-->
-          <!--            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select" name="choose">-->
-          <!--              <option th:each="el : ${data}" th:text="${el.name}" th:value="${el.id}" name="choose"></option>-->
-          <!--            </select>-->
-          <!--          </div>-->
-          <input type="hidden" name="download" value="2" />
-          <div class="form-group mx-sm-3 mb-2">
-            <p>Оберіть потрібного викладача </p>
-            <select class="form-select" aria-label="Default select example" name="download">
-              <option selected value="1">Омельченко Гліб</option>
-              <option value="2">Олександр Факторович</option>
-            </select>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
-            <button type="button" class="btn btn-outline-primary">Вивантажити</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -326,42 +137,42 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="align-middle" *ngFor="let arg of data2">
+        <tr class="align-middle" *ngFor="let arg of all_dataSemestr1">
           <th>{{arg.name}}</th>
 
 <!--          тут треба перевірка на наявність викладача-->
           <th><a href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#chooseTeacher'"  (click)="chooseTeacherr(arg)">Обрати викладача</a></th>
 
 
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
+          <th>{{arg.name}}</th>
           <th><a href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#uploadThing'"  (click)="uploadThingg(arg)">Ред.</a></th>
           <th><a href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#dropThing'"  (click)="dropThing(arg.name)">Вид.</a></th>
         </tr>
@@ -768,63 +579,6 @@
     </div>
   </div>
 </div>
-
-
-
-<!--Перегляд даних про викладачів-->
-<div class="offcanvas offcanvas-start" style="width: -webkit-fill-available" data-bs-backdrop="static" tabindex="-1" id="staticBack4" aria-labelledby="staticBackLabel4">
-  <div class="offcanvas-header">
-
-    <h5 class="offcanvas-title" id="staticBackLabel4">Перегляд даних про викладачів</h5>
-
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body" style="background-color: honeydew">
-    <input class="form-control" id="Input4" type="text" placeholder="Ведіть імя та прізвище викладача..">
-    <div class="table-responsive">
-      <br>
-      <table class="table table-bordered table-hover table-light align-middle">
-        <thead class="thead-light">
-        <tr class="align-middle">
-          <th>Викладач</th>
-          <th>email</th>
-          <th>Посада</th>
-          <th>Ставка</th>
-          <th><a href="#">Додати</a></th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody id="Table4">
-        <tr class="align-middle">
-          <th>Омельченко Гліб</th>
-          <th>glebomelchenko@gmail.com</th>
-          <th>Старший викладача</th>
-          <th>1</th>
-          <th><a href="#">Редагувати</a></th>
-          <th><a href="#">Видалити</a></th>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <br>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-          <a class="page-link">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</div>
-
-
-
 <!--Звіт викладачів по предметам за два семестра-->
 <div class="offcanvas offcanvas-start" style="width: -webkit-fill-available" data-bs-backdrop="static" tabindex="-1" id="staticBack5" aria-labelledby="staticBackLabel">
   <div class="offcanvas-header">
@@ -924,6 +678,418 @@
     </nav>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+<!--Перегляд даних про викладачів-->
+<div class="offcanvas offcanvas-start" style="width: -webkit-fill-available" data-bs-backdrop="static" tabindex="-1" id="staticBack4" aria-labelledby="staticBackLabel4">
+  <div class="offcanvas-header">
+
+    <h5 class="offcanvas-title" id="staticBackLabel4">Перегляд даних про викладачів</h5>
+
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" style="background-color: honeydew">
+    <input class="form-control" id="Input6" onkeyup = "tableSearch2()" type="text" placeholder="Ведіть імя та прізвище викладача..">
+    <div class="table-responsive">
+      <br>
+      <table class="table table-bordered table-hover table-light align-middle" id="Table6">
+        <thead class="thead-light">
+        <tr class="align-middle">
+          <th>Викладач</th>
+          <th>email</th>
+          <th>Посада</th>
+          <th>Ставка</th>
+          <th><a href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#uploadTeacherr'"  (click)="uploadTeacher()">Додати</a></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="align-middle" *ngFor="let arg of teachers">
+          <th>{{arg.name}}</th>
+          <th>{{arg.email}}</th>
+          <th>{{arg.jobtitle}}</th>
+          <th>{{arg.bid}}</th>
+          <th><a href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#uploadTeacherrr'"  (click)="uploadTeacher(arg)">Редагувати</a></th>
+          <th><a href="#" href="#" data-bs-toggle="modal" [attr.data-bs-target] = "'#dropTeacherr'"  (click)="dropTeacher(arg)">Видалити</a></th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<!--Видалення викладача-->
+<div class="modal fade" id="dropTeacherr" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dropThingLabelTeacher">Видалити дані про викладача</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Ви впевнені, що бажаєте видалити дані про цього викладача "{{nameTeacher}}" ?!</p>
+        <div [hidden]="hid1" class="alert alert-success" role="alert">
+          Дані успішно видалені !
+        </div>
+        <div [hidden]="hid2" class="alert alert-danger" role="alert">
+          Виникла помилка, перевірте введені дані !
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+        <button type="button" class="btn btn-outline-primary" (click)="deleteTeacher()">Видалити</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Додавання викладача-->
+<div class="modal fade" id="uploadTeacherr" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadThingLabelTeacher">Додавання даних про викладача</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation" enctype="multipart/form-data" [formGroup]="updateFormGroupTeacherr" (ngSubmit)="updateTeacherr()">
+          <div class="mb-3">
+            <label class="col-form-label">Ім'я та прізвище</label>
+            <input type="text" class="form-control" formControlName="name">
+            <div *ngIf="nameTeacherControll()">
+              <h6>Впишіть ім'я та прізвище</h6>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="col-form-label">Пошта</label>
+            <input type="email" class="form-control" formControlName="email">
+            <div *ngIf="emailTeacherControll()">
+              <h6>Впишіть пошту</h6>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="col-form-label">Посада</label>
+            <input type="text" class="form-control" formControlName="jobtitle">
+            <div *ngIf="jobtitleTeacherControll()">
+              <h6>Впишіть посаду</h6>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="col-form-label">Доля ставки</label>
+            <input type="number" class="form-control" formControlName="bid" step="0.01">
+            <div *ngIf="bidTeacherControll()">
+              <h6>Впишіть долю ставки</h6>
+            </div>
+          </div>
+          <div [hidden]="hid1" class="alert alert-success" role="alert">
+            Дані успішно додані !
+          </div>
+          <div [hidden]="hid2" class="alert alert-danger" role="alert">
+            Виникла помилка, перевірте введені дані !
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+            <button type="submit" class="btn btn-outline-primary" [disabled]="disabledUpdateTeacherr()">Завантажити</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Редагування викладача-->
+<div class="modal fade" id="uploadTeacherrr" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadThingLabelTeacherr">Редагування даних про викладача</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation" enctype="multipart/form-data" [formGroup]="updateFormGroupTeacher" (ngSubmit)="updateTeacher()">
+          <div class="mb-3">
+            <label class="col-form-label">Ім'я та прізвище</label>
+            <input type="text" class="form-control" formControlName="name" value="{{teacher.name}}">
+            <div *ngIf="nameTeacherControl()">
+              <h6>Впишіть ім'я та прізвище</h6>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="col-form-label">Пошта</label>
+            <input type="email" class="form-control" formControlName="email" value="{{teacher.email}}">
+            <div *ngIf="emailTeacherControl()">
+              <h6>Впишіть пошту</h6>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="col-form-label">Посада</label>
+            <input type="text" class="form-control" formControlName="jobtitle" value="{{teacher.jobtitle}}">
+            <div *ngIf="jobtitleTeacherControl()">
+              <h6>Впишіть посаду</h6>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="col-form-label">Доля ставки</label>
+            <input type="number" class="form-control" formControlName="bid" step="0.01" value="{{teacher.bid}}">
+            <div *ngIf="bidTeacherControl()">
+              <h6>Впишіть долю ставки</h6>
+            </div>
+          </div>
+          <div [hidden]="hid1" class="alert alert-success" role="alert">
+            Дані успішно додані !
+          </div>
+          <div [hidden]="hid2" class="alert alert-danger" role="alert">
+            Виникла помилка, перевірте введені дані !
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+            <button type="submit" class="btn btn-outline-primary" [disabled]="disabledUpdateTeacher()">Завантажити</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Завантажити дані про предмети-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Завантажити дані про предмети</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation" enctype="multipart/form-data" [formGroup]="uploadFormGroup" (ngSubmit)="uploadThing()">
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Оберіть файл</label>
+            <input class="form-control" type="file" id="formFile" (change)="handleFileInput2($event)" formControlName="file" required>
+            <div *ngIf="fileControl()">
+              <h6>Оберіть файл формату .xls</h6>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="semestr11" class="col-form-label">Початок першого семестру:</label>
+            <input type="number" class="form-control" id="semestr11" formControlName="semestr11">
+            <div *ngIf="semestr11Control()">
+              <h6>Впишіть початок першого семестру</h6>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="semestr12" class="col-form-label">Кінець першого семестру:</label>
+            <input type="number" class="form-control" id="semestr12" formControlName="semestr12" >
+            <div *ngIf="semestr12Control()">
+              <h6>Впишіть кінець першого семестру</h6>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="semestr21" class="col-form-label">Кінець першого семестру:</label>
+            <input type="number" class="form-control" id="semestr21" formControlName="semestr21">
+            <div *ngIf="semestr21Control()">
+              <h6>Впишіть початок другого семестру</h6>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="semestr22" class="col-form-label">Кінець першого семестру:</label>
+            <input type="number" class="form-control" id="semestr22" formControlName="semestr22">
+            <div *ngIf="semestr22Control()">
+              <h6>Впишіть кінець другого семестру</h6>
+            </div>
+          </div>
+          <div [hidden]="hid1" class="alert alert-success" role="alert">
+            Дані успішно додані !
+          </div>
+          <div [hidden]="hid2" class="alert alert-danger" role="alert">
+            Виникла помилка, перевірте введені дані !
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+            <button type="submit" class="btn btn-outline-primary" [disabled]="dis()">Завантажити</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Завантажити дані про викладачів-->
+<div class="modal fade" id="staticBackdropTeacher" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel1">Завантажити дані про викладачів</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form enctype="multipart/form-data" [formGroup]="uploadFormGroup2" (ngSubmit)="uploadTeachers()">
+          <div class="mb-3">
+            <label for="formFile2" class="form-label">Оберіть файл</label>
+            <input class="form-control" type="file" id="formFile2" (change)="handleFileInput1($event)" formControlName="file" name="file" multiple>
+            <div *ngIf="dis2()">
+              <h6>Оберіть файл формату .xls</h6>
+            </div>
+          </div>
+          <div [hidden]="hid1" class="alert alert-success" role="alert">
+            Дані успішно додані !
+          </div>
+          <div [hidden]="hid2" class="alert alert-danger" role="alert">
+            Виникла помилка, перевірте введені дані !
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+            <button type="submit" [disabled]="dis2()" class="btn btn-outline-primary">Завантажити</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Видалити дані про предмет-->
+<div class="modal fade" id="dropThings" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dropThingsLabel">Видалити дані про предмети</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Ви впевнені, що бажаєте видалити усі дані про предмети ?!</p>
+        <div [hidden]="hid1" class="alert alert-success" role="alert">
+          Дані успішно видалені !
+        </div>
+        <div [hidden]="hid2" class="alert alert-danger" role="alert">
+          Виникла помилка, перевірте введені дані !
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+        <button type="button" (click)="deleteThings()" class="btn btn-outline-primary">Видалити</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Видалити дані про викладачів-->
+<div class="modal fade" id="dropTeacher" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dropTeachersLabel">Видалити дані про викладачів</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Ви впевнені, що бажаєте видалити усі дані про викладачів ?!</p>
+        <div [hidden]="hid1" class="alert alert-success" role="alert">
+          Дані успішно видалені !
+        </div>
+        <div [hidden]="hid2" class="alert alert-danger" role="alert">
+          Виникла помилка, перевірте введені дані !
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+        <button type="button" (click)="deleteTeachers()" class="btn btn-outline-primary">Видалити</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Вивантажити дані про предмет на комп-->
+<div class="modal fade" id="downloadThingsOnComputer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="downloadThingsOnComputerLabel">Вивантажити дані на ваш комп'ютер</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="#" method="post" enctype="multipart/form-data">
+          <!--          <div class="form-group mx-sm-3 mb-2">-->
+          <!--            <label for="select" class="sr-only">Викладач</label>-->
+          <!--            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select" name="choose">-->
+          <!--              <option th:each="el : ${data}" th:text="${el.name}" th:value="${el.id}" name="choose"></option>-->
+          <!--            </select>-->
+          <!--          </div>-->
+          <input type="hidden" id="postId" name="download" value="1" />
+          <div class="form-group mx-sm-3 mb-2">
+            <p>Оберіть потрібного викладача </p>
+            <select class="form-select" aria-label="Default select example" name="download">
+              <option selected value="1">Омельченко Гліб</option>
+              <option value="2">Факторович Олександр</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+            <button type="button" class="btn btn-outline-primary">Вивантажити</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Вивантажити дані про викладачів-->
+<div class="modal fade" id="downloadThingsOnMail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="downloadThingsOnMailLabel">Вивантажити дані на пошту викладача</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="#" method="post" enctype="multipart/form-data">
+          <!--          <div class="form-group mx-sm-3 mb-2">-->
+          <!--            <label for="select" class="sr-only">Викладач</label>-->
+          <!--            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select" name="choose">-->
+          <!--              <option th:each="el : ${data}" th:text="${el.name}" th:value="${el.id}" name="choose"></option>-->
+          <!--            </select>-->
+          <!--          </div>-->
+          <input type="hidden" name="download" value="2" />
+          <div class="form-group mx-sm-3 mb-2">
+            <p>Оберіть потрібного викладача </p>
+            <select class="form-select" aria-label="Default select example" name="download">
+              <option selected value="1">Омельченко Гліб</option>
+              <option value="2">Олександр Факторович</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрити</button>
+            <button type="button" class="btn btn-outline-primary">Вивантажити</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
